@@ -9,7 +9,7 @@ use-playername: true
 
 #Set the max tries that a player can use before getting kicked.
 max-tries: 5
-kick-message: '	&cYou have entered the code wrong &4<tries>&c times.'
+kick-message: '&cYou have entered the wrong code &4<tries>&c times.'
 
 #Temp-ban will only work when you have a bungeecord ban plugin!
 temp-ban: false

@@ -1,0 +1,19 @@
+#Debug types: OFF, NORMAL, DEV/DEVELOPER
+debug: OFF
+
+prefix: '&9TableAuth>>'
+
+#This will be shown in the Authenticator app
+auth-name: 'BungeeAuth'
+use-playername: true
+
+#Set the max tries that a player can use before getting kicked.
+max-tries: 5
+kick-message: '	&cYou have entered the code wrong &4" + tries_player + "&c times.'
+temp-ban: true
+temp-ban-command: 'tempban <player> 1 hour &cToo many failed authentication attempts. (<tries>)'
+
+#Data
+players:
+    - NTaheij
+authcodes:

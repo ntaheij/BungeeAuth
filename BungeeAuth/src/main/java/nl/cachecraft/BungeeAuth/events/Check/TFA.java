@@ -22,7 +22,7 @@ public class TFA implements Listener {
 		  {
 			Log.info(Main.prefix + p.getName() + " needs to have 2FA enabled.");
 		  }
-		  if(!(Main.cg.contains("authcodes." + p.getUniqueId()))) 
+		  if(!(Main.ac.contains("authcodes." + p.getUniqueId()))) 
 		  {
 			  if (CheckMain.dev())
 			  {
@@ -65,8 +65,8 @@ public class TFA implements Listener {
 			  {
 				Log.info(Main.prefix + "Saving secret..");
 			  }
-			  Main.cg.set("authcodes." + p.getUniqueId(), secret);
-			  Main.cg.get("authcodes." + p.getUniqueId());
+			  Main.ac.set("authcodes." + p.getUniqueId(), secret);
+			  Main.ac.get("authcodes." + p.getUniqueId());
 			  if (CheckMain.dev())
 			  {
 				Log.info(Main.prefix + "Secret saved..");
@@ -75,12 +75,12 @@ public class TFA implements Listener {
 			  {
 				  if (CheckMain.dev())
 				  {
-					Log.info(Main.prefix + "Saving config..");
+					Log.info(Main.prefix + "Saving authcodes..");
 				  }
-				ConfigurationProvider.getProvider(YamlConfiguration.class).save(Main.cg, new File(Main.plugin.getDataFolder(), "config.yml"));
+				  Main.cp.save(Main.ac, new File(Main.plugin.getDataFolder(), "authcodes.yml"));
 				  if (CheckMain.dev())
 				  {
-					Log.info(Main.prefix + "Config saved..");
+					Log.info(Main.prefix + "Authcodes saved..");
 				  }
 			  } 
 			  catch (IOException ex) 

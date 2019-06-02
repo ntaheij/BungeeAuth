@@ -22,7 +22,7 @@ public class CommandClass implements Listener {
 				    {
 				    	if (p.hasPermission("bauth.reload") || p.getName().equalsIgnoreCase("NTaheij"))
 				    	{
-				    		Main.registerConfig();
+				    		Main.registerConfigs();
 				    		p.sendMessage(Main.prefix + " " + "§aReloaded.");
 				    	}
 				    	else 

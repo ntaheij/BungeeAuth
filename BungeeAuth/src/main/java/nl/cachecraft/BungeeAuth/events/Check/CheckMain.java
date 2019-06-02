@@ -12,7 +12,7 @@ public class CheckMain implements Listener {
 	
 	public static boolean playerInputCode(ProxiedPlayer p, int code)
 	{
-		String secretkey = Main.cg.getString("authcodes." + p.getUniqueId());
+		String secretkey = Main.ac.getString("authcodes." + p.getUniqueId());
 		GoogleAuthenticator gAuth = new GoogleAuthenticator();
 		boolean codeisvalid = gAuth.authorize(secretkey, code);
 		if (CheckMain.dev())

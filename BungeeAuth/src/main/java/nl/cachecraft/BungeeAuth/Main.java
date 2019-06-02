@@ -26,7 +26,8 @@ public class Main extends Plugin implements Listener
 	public static ArrayList<UUID> authlocked;
 	public static HashMap<UUID, Integer> tries;
 	public static int max_tries = 3;
-	public static Configuration cg;
+	public static Configuration cg, ac;
+	public static ConfigurationProvider cp;
 	public static Main plugin;
 	public static String prefix = "&6BungeeAuth>>";
 	public static Enum<DebugType> debugtype;
@@ -45,8 +46,9 @@ public class Main extends Plugin implements Listener
 		  }
 		  
 		  plugin = this;
+		  cp = ConfigurationProvider.getProvider(YamlConfiguration.class);
 		  createFiles();
-		  registerConfig();
+		  registerConfigs();
 		  if (CheckMain.dev())
 		  {
 			Log.info(prefix + "Loaded config.");
@@ -72,16 +74,18 @@ public class Main extends Plugin implements Listener
 	  
 	  public void createFiles()
 	  {
-	    if (!getDataFolder().exists()) {
+	    if (!getDataFolder().exists()) 
+	    {
 	      getDataFolder().mkdir();
 	    }
 	    File file = new File(getDataFolder(), "config.yml");
-	    if (!file.exists()) {
+	    if (!file.exists()) 
+	    {
 	      try
 	      {
 			  if (CheckMain.dev() || CheckMain.normal())
 			  {
-				  Log.info(prefix + "Config doesn't exist. Creating new one..");
+				  Log.info(prefix + "config.yml doesn't exist. Creating new one..");
 			  }
 	          InputStream in = getResourceAsStream("config.yml");
 	          Files.copy(in, file.toPath(), new CopyOption[0]);
@@ -91,13 +95,31 @@ public class Main extends Plugin implements Listener
 	        e.printStackTrace();
 	      }
 	    }
+	    File file_auths = new File(getDataFolder(), "authcodes.yml");
+	    if (!file_auths.exists()) 
+	    {
+	      try
+	      {
+			  if (CheckMain.dev() || CheckMain.normal())
+			  {
+				  Log.info(prefix + "authcodes.yml doesn't exist. Creating new one..");
+			  }
+	          InputStream in = getResourceAsStream("authcodes.yml");
+	          Files.copy(in, file_auths.toPath(), new CopyOption[0]);
+	      }
+	      catch (IOException e)
+	      {
+	        e.printStackTrace();
+	      }
+	    }
 	  }
 	
-	public static void registerConfig()
+	public static void registerConfigs()
 	{
 		try
 		{
-			cg = ConfigurationProvider.getProvider(YamlConfiguration.class).load(new File(plugin.getDataFolder(), "config.yml"));			
+			cg = cp.load(new File(plugin.getDataFolder(), "config.yml"));
+			ac = cp.load(new File(plugin.getDataFolder(), "authcodes.yml"));
 		}
 		catch (IOException e) 
 		{

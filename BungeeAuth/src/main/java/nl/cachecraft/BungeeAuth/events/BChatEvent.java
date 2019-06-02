@@ -66,7 +66,7 @@ public class BChatEvent implements Listener {
 						  {
 							  Log.info(Main.prefix + "[" + p.getName() + "]" + " Code is valid.");
 						  }
-						  p.sendMessage(Main.prefix + "§aAuthentication succesful. Welcome §9" + p.getName() + "§a.");
+						  p.sendMessage(Main.prefix + "§aAuthentication successful. Welcome §9" + p.getName() + "§a.");
 						  Main.tries.remove(p.getUniqueId());
 						  e.setCancelled(true);
 					  }

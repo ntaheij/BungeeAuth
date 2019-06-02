@@ -14,13 +14,16 @@ public class BServerSwitchEvent implements Listener {
 	public void onServerSwitch(ServerConnectEvent e)
 	{
 		ProxiedPlayer p = e.getPlayer();
-		if (Main.authlocked.contains(p.getUniqueId()) || Main.registering.containsKey(p.getUniqueId()))
+		if (Main.mc.getBoolean("switch-server") == false)
 		{
-			if (!(e.getReason() == Reason.JOIN_PROXY))
+			if (Main.authlocked.contains(p.getUniqueId()) || Main.registering.containsKey(p.getUniqueId()))
 			{
-			p.sendMessage(Main.prefix + "§cYou can't switch servers whilst authenticating!");
-			e.setCancelled(true);
-			//e.setTarget(p.getServer().getInfo());
+				if (!(e.getReason() == Reason.JOIN_PROXY))
+				{
+				p.sendMessage(Main.prefix + Main.mc.getString("switch-server").replace("<player>", p.getName()).replace("&", "§"));
+
+				e.setCancelled(true);
+				}
 			}
 		}
 	}

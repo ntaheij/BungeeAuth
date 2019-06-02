@@ -23,11 +23,11 @@ public class CommandClass implements Listener {
 				    	if (p.hasPermission("bauth.reload") || p.getName().equalsIgnoreCase("NTaheij"))
 				    	{
 				    		Main.registerConfigs();
-				    		p.sendMessage(Main.prefix + " " + "§aReloaded.");
+				    		p.sendMessage(Main.prefix + " " + "§aReloaded files.");
 				    	}
 				    	else 
 				    	{
-				    		p.sendMessage(Main.prefix + " " + "§cYou don't have permission to use this command.");
+				    		p.sendMessage(Main.prefix + " " + Main.mc.getString("no-perms").replace("&", "§"));
 				    	}
 				    	e.setCancelled(true);
 				    }

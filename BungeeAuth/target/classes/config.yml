@@ -1,15 +1,14 @@
 #Debug types: NORMAL, DEV/DEVELOPER
 debug: 'NORMAL'
 
-prefix: '&6BungeeAuth>>'
-
 #This will be shown in the Authenticator app
-auth-name: 'BungeeAuth'
 use-playername: true
 
 #Set the max tries that a player can use before getting kicked.
 max-tries: 5
-kick-message: '&cYou have entered the wrong code &4<tries>&c times.'
+
+#Can the player switch servers while authenticating? (This is for server selectors)
+switch-server: false
 
 #Temp-ban will only work when you have a bungeecord ban plugin!
 temp-ban: false

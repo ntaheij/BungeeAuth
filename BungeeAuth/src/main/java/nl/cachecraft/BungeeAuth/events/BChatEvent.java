@@ -34,7 +34,7 @@ public class BChatEvent implements Listener {
 						  {
 							  Log.info(Main.prefix + "[" + p.getName() + "]" + " Code is valid.");
 						  }
-						  p.sendMessage(Main.prefix + "§aAuthentication successful. Welcome §9" + p.getName() + "§a.");
+						  p.sendMessage(Main.prefix + Main.mc.getString("auth.valid").replace("<player>", p.getName()).replace("&", "§"));
 						  if (CheckMain.dev())
 						  {
 							Log.info(Main.prefix + "Saving secret..");
@@ -77,7 +77,7 @@ public class BChatEvent implements Listener {
 //						  {
 //							  Log.info(Main.prefix + "[" + p.getName() + "]" + " Code is invalid.");
 //						  }
-						  p.sendMessage(Main.prefix + "§cIncorrect or expired code. ** A code will only contain numbers **");  
+						  p.sendMessage(Main.prefix + Main.mc.getString("auth.invalid").replace("<player>", p.getName()).replace("&", "§"));
 						  e.setCancelled(true);
 					  }
 				  }
@@ -90,7 +90,7 @@ public class BChatEvent implements Listener {
 //					  int tries_t = Main.tries.get(p.getUniqueId());
 //					  Main.tries.remove(p.getUniqueId());
 //					  Main.tries.put(p.getUniqueId(), tries_t + 1);
-					  p.sendMessage(Main.prefix + "§cIncorrect or expired code. ** A code will only contain numbers **");
+					  p.sendMessage(Main.prefix + Main.mc.getString("auth.invalid").replace("<player>", p.getName()).replace("&", "§"));
 					  e.setCancelled(true);
 				  }
 			  }
@@ -106,7 +106,7 @@ public class BChatEvent implements Listener {
 			  }
 			  int tries_player = Main.tries.get(p.getUniqueId());
 			  if (tries_player > (Main.max_tries - 1)) {
-				  String kick_message = Main.cg.getString("kick-message").replaceAll("&", "§");
+				  String kick_message = Main.mc.getString("auth.kick-message").replaceAll("&", "§");
 				  kick_message = kick_message.replace("<tries>", String.valueOf(Main.max_tries));
 				  p.disconnect(Main.prefix + "\n" + kick_message);
 				  if (CheckMain.normal() || CheckMain.dev())
@@ -155,7 +155,7 @@ public class BChatEvent implements Listener {
 						  {
 							  Log.info(Main.prefix + "[" + p.getName() + "]" + " Code is invalid.");
 						  }
-						  p.sendMessage(Main.prefix + "§cIncorrect or expired code. ** A code will only contain numbers **");  
+						  p.sendMessage(Main.prefix + Main.mc.getString("auth.invalid").replace("<player>", p.getName()).replace("&", "§")); 
 						  e.setCancelled(true);
 					  }
 				  }
@@ -168,7 +168,7 @@ public class BChatEvent implements Listener {
 					  int tries_t = Main.tries.get(p.getUniqueId());
 					  Main.tries.remove(p.getUniqueId());
 					  Main.tries.put(p.getUniqueId(), tries_t + 1);
-					  p.sendMessage(Main.prefix + "§cIncorrect or expired code. ** A code will only contain numbers **");
+					  p.sendMessage(Main.prefix + Main.mc.getString("auth.invalid").replace("<player>", p.getName()).replace("&", "§"));
 					  e.setCancelled(true);
 				  }  
 			  }

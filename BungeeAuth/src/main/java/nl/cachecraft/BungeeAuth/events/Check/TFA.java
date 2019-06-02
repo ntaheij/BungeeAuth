@@ -1,16 +1,11 @@
 package nl.cachecraft.BungeeAuth.events.Check;
 
-import java.io.File;
-import java.io.IOException;
-
 import com.warrenstrange.googleauth.GoogleAuthenticator;
 import com.warrenstrange.googleauth.GoogleAuthenticatorKey;
 
 import jline.internal.Log;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.plugin.Listener;
-import net.md_5.bungee.config.ConfigurationProvider;
-import net.md_5.bungee.config.YamlConfiguration;
 import nl.cachecraft.BungeeAuth.Main;
 
 public class TFA implements Listener {
@@ -19,7 +14,7 @@ public class TFA implements Listener {
 	public static void auth(ProxiedPlayer p)
 	  {
 		  if (CheckMain.dev())
-		  {
+		  {  
 			Log.info(Main.prefix + p.getName() + " needs to have 2FA enabled.");
 		  }
 		  if(!(Main.ac.contains("authcodes." + p.getUniqueId()))) 
@@ -33,7 +28,7 @@ public class TFA implements Listener {
 			  String secret = key.getKey();
 			  String website = "http://cachecraft-api.azurewebsites.net/generator.html?secret=";
 			  String link = website + secret;
-			  String auth_name = Main.cg.getString("auth-name");
+			  String auth_name = Main.mc.getString("auth.auth-name");
 			  if (auth_name == null || auth_name.length() < 2)
 			  {
 				auth_name = "BungeeAuth";  
@@ -73,7 +68,8 @@ public class TFA implements Listener {
 				Log.info(Main.prefix + p.getName() + " is being locked for 2FA.");
 			  }
 			  Main.authlocked.add(p.getUniqueId());
-			  p.sendMessage(Main.prefix + "§cPlease open your Google Authenticator App and enter your six digit auth code.");
+			  p.sendMessage(Main.prefix + Main.mc.getString("auth.open-message").replace("<player>", p.getName()).replace("&", "§"));
+			 
 		  }
 	  }
 	

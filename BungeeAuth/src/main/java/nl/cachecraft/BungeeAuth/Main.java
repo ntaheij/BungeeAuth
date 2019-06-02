@@ -27,10 +27,10 @@ public class Main extends Plugin implements Listener
 	public static ArrayList<UUID> authlocked;
 	public static HashMap<UUID, Integer> tries;
 	public static int max_tries = 3;
-	public static Configuration cg, ac;
+	public static Configuration cg, ac, mc;
 	public static ConfigurationProvider cp;
 	public static Main plugin;
-	public static String prefix = "&6BungeeAuth>>";
+	public static String prefix = "§6BungeeAuth>> ";
 	public static Enum<DebugType> debugtype;
 	public static HashMap<UUID, String> registering;
 	
@@ -58,7 +58,7 @@ public class Main extends Plugin implements Listener
 			Log.info(prefix + "Loaded config.");
 		  }
 		  
-		  prefix = cg.getString("prefix").replace("&", "§") + " ";
+		  prefix = mc.getString("prefix").replace("&", "§") + " ";
 		  max_tries = cg.getInt("max-tries");
 		  debugtype = DebugType.OFF;
 		  if (CheckMain.dev())
@@ -116,6 +116,23 @@ public class Main extends Plugin implements Listener
 	        e.printStackTrace();
 	      }
 	    }
+	    File file_msgs = new File(getDataFolder(), "messages.yml");
+	    if (!file_msgs.exists()) 
+	    {
+	      try
+	      {
+			  if (CheckMain.dev() || CheckMain.normal())
+			  {
+				  Log.info(prefix + "messages.yml doesn't exist. Creating new one..");
+			  }
+	          InputStream in = getResourceAsStream("messages.yml");
+	          Files.copy(in, file_msgs.toPath(), new CopyOption[0]);
+	      }
+	      catch (IOException e)
+	      {
+	        e.printStackTrace();
+	      }
+	    }
 	  }
 	
 	public static void registerConfigs()
@@ -124,6 +141,7 @@ public class Main extends Plugin implements Listener
 		{
 			cg = cp.load(new File(plugin.getDataFolder(), "config.yml"));
 			ac = cp.load(new File(plugin.getDataFolder(), "authcodes.yml"));
+			mc = cp.load(new File(plugin.getDataFolder(), "messages.yml"));
 		}
 		catch (IOException e) 
 		{

@@ -1,5 +1,5 @@
 #Debug types: NORMAL, DEV/DEVELOPER
-debug: 'DEV'
+debug: 'NORMAL'
 
 prefix: '&6BungeeAuth>>'
 

@@ -14,21 +14,19 @@ import net.md_5.bungee.config.YamlConfiguration;
 import nl.cachecraft.BungeeAuth.Main;
 
 public class TFA implements Listener {
-	
-	static String prefix = Main.prefix;
 
 	@SuppressWarnings("deprecation")
 	public static void auth(ProxiedPlayer p)
 	  {
 		  if (CheckMain.dev())
 		  {
-			Log.info(prefix + p.getName() + " needs to have 2FA enabled.");
+			Log.info(Main.prefix + p.getName() + " needs to have 2FA enabled.");
 		  }
 		  if(!(Main.cg.contains("authcodes." + p.getUniqueId()))) 
 		  {
 			  if (CheckMain.dev())
 			  {
-				Log.info(prefix + p.getName() + " doesn't have 2FA enabled yet.");
+				Log.info(Main.prefix + p.getName() + " doesn't have 2FA enabled yet.");
 			  }
 			  GoogleAuthenticator gAuth = new GoogleAuthenticator();
 			  GoogleAuthenticatorKey key = gAuth.createCredentials();
@@ -49,47 +47,47 @@ public class TFA implements Listener {
 			  }
 			  if (CheckMain.dev())
 			  {
-				Log.info(prefix + "Generating secret..");
-				Log.info(prefix + "Generating link..");
-				Log.info(prefix + "Secret generated [" + secret + "]");
-				Log.info(prefix + "Link generated [" + secret + "]");
-				Log.info(prefix + "Link contents:");
-				Log.info(prefix + "- Secret: [" + secret + "]");
-				Log.info(prefix + "- Server name: [" + auth_name + "]");
-				Log.info(prefix + "- Using Playername: [" + Main.cg.getBoolean("use-playername") + "]");
+				Log.info(Main.prefix + "Generating secret..");
+				Log.info(Main.prefix + "Generating link..");
+				Log.info(Main.prefix + "Secret generated [" + secret + "]");
+				Log.info(Main.prefix + "Link generated [" + secret + "]");
+				Log.info(Main.prefix + "Link contents:");
+				Log.info(Main.prefix + "- Secret: [" + secret + "]");
+				Log.info(Main.prefix + "- Server name: [" + auth_name + "]");
+				Log.info(Main.prefix + "- Using Playername: [" + Main.cg.getBoolean("use-playername") + "]");
 			  }
 			  
-			  p.sendMessage(prefix + "§7Your §aGoogleAuth Code §7is §a" + secret);
+			  p.sendMessage(Main.prefix + "§7Your §aGoogleAuth Code §7is §a" + secret);
 			  p.sendMessage("§7You must enter this code in the Google Authenticator App before leaving the server.");
 			  p.sendMessage("§7Alternatively, you can use the QR-code below.");
 			  p.sendMessage("§a" + link);
 			  if (CheckMain.dev())
 			  {
-				Log.info(prefix + "Saving secret..");
+				Log.info(Main.prefix + "Saving secret..");
 			  }
 			  Main.cg.set("authcodes." + p.getUniqueId(), secret);
 			  Main.cg.get("authcodes." + p.getUniqueId());
 			  if (CheckMain.dev())
 			  {
-				Log.info(prefix + "Secret saved..");
+				Log.info(Main.prefix + "Secret saved..");
 			  }
 			  try 
 			  {
 				  if (CheckMain.dev())
 				  {
-					Log.info(prefix + "Saving config..");
+					Log.info(Main.prefix + "Saving config..");
 				  }
 				ConfigurationProvider.getProvider(YamlConfiguration.class).save(Main.cg, new File(Main.plugin.getDataFolder(), "config.yml"));
 				  if (CheckMain.dev())
 				  {
-					Log.info(prefix + "Config saved..");
+					Log.info(Main.prefix + "Config saved..");
 				  }
 			  } 
 			  catch (IOException ex) 
 			  {
 				  if (CheckMain.dev())
 				  {
-					Log.info(prefix + "Saving secret.. ERROR!");
+					Log.info(Main.prefix + "Saving secret.. ERROR!");
 				  }
 				ex.getStackTrace();
 			  }
@@ -98,11 +96,11 @@ public class TFA implements Listener {
 		  {
 			  if (CheckMain.dev())
 			  {
-				Log.info(prefix + p.getName() + " has 2FA enabled.");
-				Log.info(prefix + p.getName() + " is being locked for 2FA.");
+				Log.info(Main.prefix + p.getName() + " has 2FA enabled.");
+				Log.info(Main.prefix + p.getName() + " is being locked for 2FA.");
 			  }
 			  Main.authlocked.add(p.getUniqueId());
-			  p.sendMessage(prefix + "§cPlease open your Google Authenticator App and enter your six digit auth code.");
+			  p.sendMessage(Main.prefix + "§cPlease open your Google Authenticator App and enter your six digit auth code.");
 		  }
 	  }
 	

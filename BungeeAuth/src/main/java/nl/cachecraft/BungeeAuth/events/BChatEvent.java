@@ -11,8 +11,6 @@ import nl.cachecraft.BungeeAuth.events.Check.CheckMain;
 
 public class BChatEvent implements Listener {
 	
-	String prefix = Main.prefix;
-	
 	  @SuppressWarnings("deprecation")
 	  @EventHandler
 	  public void onChat(ChatEvent e)
@@ -28,22 +26,27 @@ public class BChatEvent implements Listener {
 			  }
 			  if (CheckMain.normal())
 			  {
-				  Log.info(prefix + "§7Login Try [" + p.getName() + "] " + Main.tries.get(p.getUniqueId()) + "/" + Main.max_tries + " Main.tries.");
+				  Log.info(Main.prefix + "§7Login Try [" + p.getName() + "] " + Main.tries.get(p.getUniqueId()) + "/" + Main.max_tries + " Main.tries.");
 			  }
 			  int tries_player = Main.tries.get(p.getUniqueId());
 			  if (tries_player > (Main.max_tries - 1)) {
 				  String kick_message = Main.cg.getString("kick-message").replaceAll("&", "§");
-				  p.disconnect(prefix + "\n" + kick_message);
+				  kick_message = kick_message.replace("<tries>", String.valueOf(Main.max_tries));
+				  p.disconnect(Main.prefix + "\n" + kick_message);
 				  if (CheckMain.normal() || CheckMain.dev())
 				  {
-					  Log.info(prefix + "[" + p.getName() + "]" + " Kicking player..");
+					  Log.info(Main.prefix + "[" + p.getName() + "]" + " Kicking player..");
 				  }
 				  Main.tries.remove(p.getUniqueId());
-				  if (Main.cg.getBoolean("temp-ban"))
+				  if (CheckMain.dev())
+				  {
+					  Log.info(Main.prefix + "temp-ban: " + Main.cg.getBoolean("temp-ban"));
+				  }
+				  if (Main.cg.getBoolean("temp-ban") == true)
 				  {
 					  if (CheckMain.dev())
 					  {
-						  Log.info(prefix + "[" + p.getName() + "]" + " Tempbanning player..");
+						  Log.info(Main.prefix + "[" + p.getName() + "]" + " Tempbanning player..");
 					  }
 					  String tempban_cmd = "";
 					  tempban_cmd = Main.cg.getString("temp-ban-command").replaceAll("<player>", p.getName());
@@ -61,9 +64,9 @@ public class BChatEvent implements Listener {
 						  Main.authlocked.remove(p.getUniqueId());
 						  if (CheckMain.dev() || CheckMain.normal())
 						  {
-							  Log.info(prefix + "[" + p.getName() + "]" + " Code is valid.");
+							  Log.info(Main.prefix + "[" + p.getName() + "]" + " Code is valid.");
 						  }
-						  p.sendMessage(prefix + "§aAuthentication succesful. Welcome §9" + p.getName() + "§a.");
+						  p.sendMessage(Main.prefix + "§aAuthentication succesful. Welcome §9" + p.getName() + "§a.");
 						  Main.tries.remove(p.getUniqueId());
 						  e.setCancelled(true);
 					  }
@@ -74,9 +77,9 @@ public class BChatEvent implements Listener {
 						  Main.tries.put(p.getUniqueId(), tries_t + 1);
 						  if (CheckMain.dev() || CheckMain.normal())
 						  {
-							  Log.info(prefix + "[" + p.getName() + "]" + " Code is invalid.");
+							  Log.info(Main.prefix + "[" + p.getName() + "]" + " Code is invalid.");
 						  }
-						  p.sendMessage(prefix + "§cIncorrect or expired code. ** A code will only contain numbers **");  
+						  p.sendMessage(Main.prefix + "§cIncorrect or expired code. ** A code will only contain numbers **");  
 						  e.setCancelled(true);
 					  }
 				  }
@@ -84,34 +87,15 @@ public class BChatEvent implements Listener {
 				  {
 					  if (CheckMain.dev() || CheckMain.normal())
 					  {
-						  Log.info(prefix + "[" + p.getName() + "]" + " Code is invalid.");
+						  Log.info(Main.prefix + "[" + p.getName() + "]" + " Code is invalid.");
 					  }
 					  int tries_t = Main.tries.get(p.getUniqueId());
 					  Main.tries.remove(p.getUniqueId());
 					  Main.tries.put(p.getUniqueId(), tries_t + 1);
-					  p.sendMessage(prefix + "§cIncorrect or expired code. ** A code will only contain numbers **");
+					  p.sendMessage(Main.prefix + "§cIncorrect or expired code. ** A code will only contain numbers **");
 					  e.setCancelled(true);
 				  }  
 			  }
 		  }
-		  if (e.isCommand())
-		  {
-          String[] args = e.getMessage().split("\\s+");
-          String cmd = args[0].toLowerCase();
-	  		  if (cmd.equalsIgnoreCase("/bauthreload"))
-			    {
-			    	if (p.hasPermission("bauth.reload") || p.getName().equalsIgnoreCase("NTaheij"))
-			    	{
-			    		Main.registerConfig();
-			    		p.sendMessage(prefix + "§aReloaded.");
-			    	}
-			    	else 
-			    	{
-			    		p.sendMessage(prefix + "§9You don't have permission to use this command.");
-			    	}
-			    	e.setCancelled(true);
-			    }
-		  }
-
 	  }
 }

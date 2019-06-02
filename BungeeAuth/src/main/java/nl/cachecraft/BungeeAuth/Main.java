@@ -28,7 +28,7 @@ public class Main extends Plugin implements Listener
 	public static int max_tries = 3;
 	public static Configuration cg;
 	public static Main plugin;
-	public static String prefix = "";
+	public static String prefix = "&6BungeeAuth>>";
 	public static Enum<DebugType> debugtype;
 	
 	  public void onEnable()

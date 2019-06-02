@@ -9,8 +9,6 @@ import nl.cachecraft.BungeeAuth.Main;
 import nl.cachecraft.BungeeAuth.Enums.DebugType;
 
 public class CheckMain implements Listener {
-
-	static String prefix = Main.prefix;
 	
 	public static boolean playerInputCode(ProxiedPlayer p, int code)
 	{
@@ -19,7 +17,7 @@ public class CheckMain implements Listener {
 		boolean codeisvalid = gAuth.authorize(secretkey, code);
 		if (CheckMain.dev())
 		{
-			Log.info(prefix + "Checking if code is valid..");
+			Log.info(Main.prefix + "Checking if code is valid..");
 		}
 		if (codeisvalid)
 		{
@@ -46,25 +44,25 @@ public class CheckMain implements Listener {
 		  }
 		  if (normal())
 		  {
-			  Log.info(prefix + "Detected debugtype: NORMAL");
+			  Log.info(Main.prefix + "Detected debugtype: NORMAL");
 		  }
 		  if (dev())
 		  {
-			Log.info(prefix + "Detected debugtype: DEVELOPER");
+			Log.info(Main.prefix + "Detected debugtype: DEVELOPER");
 		  }
 		  if (off())
 		  {
-			  Log.info(prefix + "Detected debugtype: OFF");
+			  Log.info(Main.prefix + "Detected debugtype: OFF");
 		  }
 		  
 		  if (normal())
 		  {
-			Log.info(prefix + "Plugin has enabled succesfully.");  
+			Log.info(Main.prefix + "Plugin has enabled succesfully.");  
 		  }
 		  
 		  if (dev())
 		  {
-			Log.info(prefix + "Plugin has enabled succesfully.");
+			Log.info(Main.prefix + "Plugin has enabled succesfully.");
 		  }
 	}
 	

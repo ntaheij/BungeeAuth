@@ -57,40 +57,12 @@ public class TFA implements Listener {
 				Log.info(Main.prefix + "- Using Playername: [" + Main.cg.getBoolean("use-playername") + "]");
 			  }
 			  
-			  p.sendMessage(Main.prefix + "§7Your §aGoogleAuth Code §7is §a" + secret);
-			  p.sendMessage("§7You must enter this code in the Google Authenticator App before leaving the server.");
+			  p.sendMessage(Main.prefix + "§7You are required to register using 2FA via the Google Authenticator App.");
+			  p.sendMessage("§7Your §aGoogleAuth Code §7is §a" + secret);
 			  p.sendMessage("§7Alternatively, you can use the QR-code below.");
 			  p.sendMessage("§a" + link);
-			  if (CheckMain.dev())
-			  {
-				Log.info(Main.prefix + "Saving secret..");
-			  }
-			  Main.ac.set("authcodes." + p.getUniqueId(), secret);
-			  Main.ac.get("authcodes." + p.getUniqueId());
-			  if (CheckMain.dev())
-			  {
-				Log.info(Main.prefix + "Secret saved..");
-			  }
-			  try 
-			  {
-				  if (CheckMain.dev())
-				  {
-					Log.info(Main.prefix + "Saving authcodes..");
-				  }
-				  Main.cp.save(Main.ac, new File(Main.plugin.getDataFolder(), "authcodes.yml"));
-				  if (CheckMain.dev())
-				  {
-					Log.info(Main.prefix + "Authcodes saved..");
-				  }
-			  } 
-			  catch (IOException ex) 
-			  {
-				  if (CheckMain.dev())
-				  {
-					Log.info(Main.prefix + "Saving secret.. ERROR!");
-				  }
-				ex.getStackTrace();
-			  }
+			  p.sendMessage("§cAfter doing so type the six digit verification code.");
+			  Main.registering.put(p.getUniqueId(), secret);
 		  }
 		  else
 		  {

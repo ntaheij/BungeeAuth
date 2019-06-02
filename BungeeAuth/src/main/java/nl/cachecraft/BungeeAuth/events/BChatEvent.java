@@ -1,5 +1,8 @@
 package nl.cachecraft.BungeeAuth.events;
 
+import java.io.File;
+import java.io.IOException;
+
 import jline.internal.Log;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
@@ -17,7 +20,80 @@ public class BChatEvent implements Listener {
 	  {
 		  ProxiedPlayer p = (ProxiedPlayer)e.getSender();
 		  String msg = e.getMessage();
-		  
+		  if (Main.registering.containsKey(p.getUniqueId()))
+		  {
+				  try
+				  {  
+					  int code = Integer.valueOf(msg);
+					  Log.info("code: " + code);
+					  Log.info("secret: " + code);
+					  if(CheckMain.playerInputCode(p, code))
+					  {
+						  Main.authlocked.remove(p.getUniqueId());
+						  if (CheckMain.dev() || CheckMain.normal())
+						  {
+							  Log.info(Main.prefix + "[" + p.getName() + "]" + " Code is valid.");
+						  }
+						  p.sendMessage(Main.prefix + "§aAuthentication successful. Welcome §9" + p.getName() + "§a.");
+						  if (CheckMain.dev())
+						  {
+							Log.info(Main.prefix + "Saving secret..");
+						  }
+						  	Main.ac.set("authcodes." + p.getUniqueId(), Main.registering.get(p.getUniqueId()));
+						  	Main.ac.get("authcodes." + p.getUniqueId());
+						  if (CheckMain.dev())
+						  {
+							Log.info(Main.prefix + "Secret saved..");
+						  }
+						  try 
+						  {
+							  if (CheckMain.dev())
+							  {
+								Log.info(Main.prefix + "Saving authcodes..");
+							  }
+							  Main.cp.save(Main.ac, new File(Main.plugin.getDataFolder(), "authcodes.yml"));
+							  if (CheckMain.dev())
+							  {
+								Log.info(Main.prefix + "Authcodes saved..");
+							  }
+						  } 
+						  catch (IOException ex) 
+						  {
+							  if (CheckMain.dev())
+							  {
+								Log.info(Main.prefix + "Saving secret.. ERROR!");
+							  }
+							ex.getStackTrace();
+						  }
+						  Main.registering.remove(p.getUniqueId());
+						  e.setCancelled(true);
+					  }
+					  else
+					  {
+//						  int tries_t = Main.tries.get(p.getUniqueId());
+//						  Main.tries.remove(p.getUniqueId());
+//						  Main.tries.put(p.getUniqueId(), tries_t + 1);
+//						  if (CheckMain.dev() || CheckMain.normal())
+//						  {
+//							  Log.info(Main.prefix + "[" + p.getName() + "]" + " Code is invalid.");
+//						  }
+						  p.sendMessage(Main.prefix + "§cIncorrect or expired code. ** A code will only contain numbers **");  
+						  e.setCancelled(true);
+					  }
+				  }
+				  catch (Exception ex)
+				  {
+					  if (CheckMain.dev() || CheckMain.normal())
+					  {
+						  Log.info(Main.prefix + "[" + p.getName() + "]" + " Code is invalid.");
+					  }
+//					  int tries_t = Main.tries.get(p.getUniqueId());
+//					  Main.tries.remove(p.getUniqueId());
+//					  Main.tries.put(p.getUniqueId(), tries_t + 1);
+					  p.sendMessage(Main.prefix + "§cIncorrect or expired code. ** A code will only contain numbers **");
+					  e.setCancelled(true);
+				  }
+			  }
 		  if (Main.authlocked.contains(p.getUniqueId()))
 		  {
 			  if (!Main.tries.containsKey(p.getUniqueId()))

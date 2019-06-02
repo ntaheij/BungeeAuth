@@ -31,6 +31,7 @@ public class Main extends Plugin implements Listener
 	public static Main plugin;
 	public static String prefix = "&6BungeeAuth>>";
 	public static Enum<DebugType> debugtype;
+	public static HashMap<UUID, String> registering;
 	
 	  public void onEnable()
 	  {
@@ -40,6 +41,7 @@ public class Main extends Plugin implements Listener
 		  ProxyServer.getInstance().getPluginManager().registerListener(this, new BChatEvent());
 		  authlocked = new ArrayList<UUID>();
 		  tries = new HashMap<UUID, Integer>();
+		  registering = new HashMap<UUID, String>();
 		  if (CheckMain.dev())
 		  {
 			Log.info(prefix + "Created listeners/maps.");

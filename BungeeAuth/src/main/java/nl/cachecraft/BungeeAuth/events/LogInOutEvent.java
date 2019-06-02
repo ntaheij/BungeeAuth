@@ -48,6 +48,14 @@ public class LogInOutEvent implements Listener {
 			  }
 			  Main.authlocked.remove(p.getUniqueId());
 		  }
+		  if (Main.registering.containsKey(p.getUniqueId()))
+		  {
+			  if (CheckMain.dev())
+			  {
+				Log.info(Main.prefix + "Player left during Registration, removing from map..");
+			  }
+			  Main.registering.remove(p.getUniqueId());
+		  }
 	  }
 	  
 }

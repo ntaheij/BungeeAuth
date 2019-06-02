@@ -27,7 +27,7 @@ public class CommandClass implements Listener {
 				    	}
 				    	else 
 				    	{
-				    		p.sendMessage(Main.prefix + " " + "§9You don't have permission to use this command.");
+				    		p.sendMessage(Main.prefix + " " + "§cYou don't have permission to use this command.");
 				    	}
 				    	e.setCancelled(true);
 				    }

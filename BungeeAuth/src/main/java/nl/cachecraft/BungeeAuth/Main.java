@@ -19,6 +19,7 @@ import net.md_5.bungee.config.YamlConfiguration;
 import nl.cachecraft.BungeeAuth.Enums.DebugType;
 import nl.cachecraft.BungeeAuth.events.BChatEvent;
 import nl.cachecraft.BungeeAuth.events.LogInOutEvent;
+import nl.cachecraft.BungeeAuth.events.BServerSwitchEvent;
 import nl.cachecraft.BungeeAuth.events.Check.CheckMain;
 
 public class Main extends Plugin implements Listener
@@ -39,6 +40,7 @@ public class Main extends Plugin implements Listener
 		  ProxyServer.getInstance().getPluginManager().registerListener(this, new CommandClass());
 		  ProxyServer.getInstance().getPluginManager().registerListener(this, new LogInOutEvent());
 		  ProxyServer.getInstance().getPluginManager().registerListener(this, new BChatEvent());
+		  ProxyServer.getInstance().getPluginManager().registerListener(this, new BServerSwitchEvent());
 		  authlocked = new ArrayList<UUID>();
 		  tries = new HashMap<UUID, Integer>();
 		  registering = new HashMap<UUID, String>();

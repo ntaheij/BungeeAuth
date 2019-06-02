@@ -102,7 +102,7 @@ public class BChatEvent implements Listener {
 			  }
 			  if (CheckMain.normal())
 			  {
-				  Log.info(Main.prefix + "§7Login Try [" + p.getName() + "] " + Main.tries.get(p.getUniqueId()) + "/" + Main.max_tries + " Main.tries.");
+				  Log.info(Main.prefix + "§7Login Try [" + p.getName() + "] " + Main.tries.get(p.getUniqueId()) + "/" + Main.max_tries + " tries.");
 			  }
 			  int tries_player = Main.tries.get(p.getUniqueId());
 			  if (tries_player > (Main.max_tries - 1)) {

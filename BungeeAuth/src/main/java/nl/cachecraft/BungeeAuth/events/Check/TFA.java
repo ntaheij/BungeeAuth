@@ -31,7 +31,8 @@ public class TFA implements Listener {
 			  GoogleAuthenticator gAuth = new GoogleAuthenticator();
 			  GoogleAuthenticatorKey key = gAuth.createCredentials();
 			  String secret = key.getKey();
-			  String link = "https://noahtaheij.nl/auth/api/qr/generator.html?secret=" + secret;
+			  String website = "http://cachecraft-api.azurewebsites.net/generator.html?secret=";
+			  String link = website + secret;
 			  String auth_name = Main.cg.getString("auth-name");
 			  if (auth_name == null || auth_name.length() < 2)
 			  {
@@ -39,11 +40,11 @@ public class TFA implements Listener {
 			  }
 			  if (Main.cg.getBoolean("use-playername")) 
 			  {
-				  link = "https://noahtaheij.nl/auth/api/qr/generator.html?secret=" + secret + "&label=" + auth_name + "&issuer=" + p.getName();  
+				  link = website + secret + "&label=" + auth_name + "&issuer=" + p.getName();  
 			  }
 			  else 
 			  {
-				  link = "https://noahtaheij.nl/auth/api/qr/generator.html?secret=" + secret + "&label=" + auth_name;
+				  link = website + secret + "&label=" + auth_name;
 			  }
 			  if (CheckMain.dev())
 			  {

@@ -5,6 +5,6 @@ switch-server: '&cYou can not switch servers whilst authenticating!'
 auth:
     auth-name: 'BungeeAuth'
     open-message: '&cPlease open your Google Authenticator App and enter your six digit auth code.'
-    valid: '&aAuthentication successful. Welcome &9<name>&a.'
+    valid: '&aAuthentication successful. Welcome &9<player>&a.'
     invalid: '&cIncorrect or expired code. ** A code will only contain numbers **'
     kick-message: '&cYou have entered the wrong code &4<tries>&c times.'

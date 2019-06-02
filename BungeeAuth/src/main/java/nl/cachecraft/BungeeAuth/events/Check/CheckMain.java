@@ -1,4 +1,4 @@
-package nl.cachecraft.BungeeAuth.events;
+package nl.cachecraft.BungeeAuth.events.Check;
 
 import com.warrenstrange.googleauth.GoogleAuthenticator;
 
@@ -8,7 +8,7 @@ import net.md_5.bungee.api.plugin.Listener;
 import nl.cachecraft.BungeeAuth.Main;
 import nl.cachecraft.BungeeAuth.Enums.DebugType;
 
-public class Check implements Listener {
+public class CheckMain implements Listener {
 
 	static String prefix = Main.prefix;
 	
@@ -17,7 +17,7 @@ public class Check implements Listener {
 		String secretkey = Main.cg.getString("authcodes." + p.getUniqueId());
 		GoogleAuthenticator gAuth = new GoogleAuthenticator();
 		boolean codeisvalid = gAuth.authorize(secretkey, code);
-		if (Check.dev())
+		if (CheckMain.dev())
 		{
 			Log.info(prefix + "Checking if code is valid..");
 		}

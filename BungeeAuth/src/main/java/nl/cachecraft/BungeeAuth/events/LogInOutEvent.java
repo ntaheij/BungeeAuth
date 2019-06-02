@@ -2,6 +2,7 @@ package nl.cachecraft.BungeeAuth.events;
 
 import java.io.File;
 import java.io.IOException;
+
 import com.warrenstrange.googleauth.GoogleAuthenticator;
 import com.warrenstrange.googleauth.GoogleAuthenticatorKey;
 
@@ -14,104 +15,33 @@ import net.md_5.bungee.config.ConfigurationProvider;
 import net.md_5.bungee.config.YamlConfiguration;
 import net.md_5.bungee.event.EventHandler;
 import nl.cachecraft.BungeeAuth.Main;
+import nl.cachecraft.BungeeAuth.events.Check.CheckMain;
+import nl.cachecraft.BungeeAuth.events.Check.TFA;
 
 public class LogInOutEvent implements Listener {
 	
 	String prefix = Main.prefix;
 
-	  @SuppressWarnings("deprecation")
 	@EventHandler
 	  public void onPostLogin(PostLoginEvent e) {
 		  ProxiedPlayer p = e.getPlayer();
-		  if (Check.dev())
+		  if (CheckMain.dev())
 		  {
 			Log.info(prefix + p.getName() + " has connected.");
 		  }
-		  if (Main.cg.getStringList("players").contains(p.getName())) 
+		  if (Main.cg.getBoolean("use-player-list"))
 		  {
-			  if (Check.dev())
+			  if (Main.cg.getStringList("players").contains(p.getName())) 
 			  {
-				Log.info(prefix + p.getName() + " needs to have 2FA enabled.");
+				  Log.info(prefix + "Using list to see if player needs 2fa.");
+				  TFA.auth(p);
 			  }
-			  if(!(Main.cg.contains("authcodes." + p.getUniqueId()))) 
+		  }
+		  else {
+			  if (p.hasPermission(Main.cg.getString("permission")))
 			  {
-				  if (Check.dev())
-				  {
-					Log.info(prefix + p.getName() + " doesn't have 2FA enabled yet.");
-				  }
-				  GoogleAuthenticator gAuth = new GoogleAuthenticator();
-				  GoogleAuthenticatorKey key = gAuth.createCredentials();
-				  String secret = key.getKey();
-				  String link = "https://noahtaheij.nl/auth/api/qr/generator.html?secret=" + secret;
-				  String auth_name = Main.cg.getString("auth-name");
-				  if (auth_name == null || auth_name.length() < 2)
-				  {
-					auth_name = "BungeeAuth";  
-				  }
-				  if (Main.cg.getBoolean("use-playername")) 
-				  {
-					  link = "https://noahtaheij.nl/auth/api/qr/generator.html?secret=" + secret + "&label=" + auth_name + "&issuer=" + p.getName();  
-				  }
-				  else 
-				  {
-					  link = "https://noahtaheij.nl/auth/api/qr/generator.html?secret=" + secret + "&label=" + auth_name;
-				  }
-				  if (Check.dev())
-				  {
-					Log.info(prefix + "Generating secret..");
-					Log.info(prefix + "Generating link..");
-					Log.info(prefix + "Secret generated [" + secret + "]");
-					Log.info(prefix + "Link generated [" + secret + "]");
-					Log.info(prefix + "Link contents:");
-					Log.info(prefix + "- Secret: [" + secret + "]");
-					Log.info(prefix + "- Server name: [" + auth_name + "]");
-					Log.info(prefix + "- Using Playername: [" + Main.cg.getBoolean("use-playername") + "]");
-				  }
-				  
-				  p.sendMessage(prefix + "§7Your §aGoogleAuth Code §7is §a" + secret);
-				  p.sendMessage("§7You must enter this code in the Google Authenticator App before leaving the server.");
-				  p.sendMessage("§7Alternatively, you can use the QR-code below.");
-				  p.sendMessage("§a" + link);
-				  if (Check.dev())
-				  {
-					Log.info(prefix + "Saving secret..");
-				  }
-				  Main.cg.set("authcodes." + p.getUniqueId(), secret);
-				  Main.cg.get("authcodes." + p.getUniqueId());
-				  if (Check.dev())
-				  {
-					Log.info(prefix + "Secret saved..");
-				  }
-				  try 
-				  {
-					  if (Check.dev())
-					  {
-						Log.info(prefix + "Saving config..");
-					  }
-					ConfigurationProvider.getProvider(YamlConfiguration.class).save(Main.cg, new File(Main.plugin.getDataFolder(), "config.yml"));
-					  if (Check.dev())
-					  {
-						Log.info(prefix + "Config saved..");
-					  }
-				  } 
-				  catch (IOException ex) 
-				  {
-					  if (Check.dev())
-					  {
-						Log.info(prefix + "Saving secret.. ERROR!");
-					  }
-					ex.getStackTrace();
-				  }
-			  }
-			  else
-			  {
-				  if (Check.dev())
-				  {
-					Log.info(prefix + p.getName() + " has 2FA enabled.");
-					Log.info(prefix + p.getName() + " is being locked for 2FA.");
-				  }
-				  Main.authlocked.add(p.getUniqueId());
-				  p.sendMessage(prefix + "§cPlease open your Google Authenticator App and enter your six digit auth code.");
+				  Log.info(prefix + "Using permissions to see if player needs 2fa.");
+				  TFA.auth(p);
 			  }
 		  }
 	  }
@@ -122,7 +52,7 @@ public class LogInOutEvent implements Listener {
 		  ProxiedPlayer p = e.getPlayer();
 		  if (Main.authlocked.contains(p.getUniqueId()))
 		  {
-			  if (Check.dev())
+			  if (CheckMain.dev())
 			  {
 				Log.info(prefix + "Player left during Authentication, removing from map..");
 			  }

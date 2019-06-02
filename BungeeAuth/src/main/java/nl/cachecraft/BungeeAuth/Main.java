@@ -18,8 +18,8 @@ import net.md_5.bungee.config.ConfigurationProvider;
 import net.md_5.bungee.config.YamlConfiguration;
 import nl.cachecraft.BungeeAuth.Enums.DebugType;
 import nl.cachecraft.BungeeAuth.events.BChatEvent;
-import nl.cachecraft.BungeeAuth.events.Check;
 import nl.cachecraft.BungeeAuth.events.LogInOutEvent;
+import nl.cachecraft.BungeeAuth.events.Check.CheckMain;
 
 public class Main extends Plugin implements Listener
 {
@@ -39,7 +39,7 @@ public class Main extends Plugin implements Listener
 		  ProxyServer.getInstance().getPluginManager().registerListener(this, new BChatEvent());
 		  authlocked = new ArrayList<UUID>();
 		  tries = new HashMap<UUID, Integer>();
-		  if (Check.dev())
+		  if (CheckMain.dev())
 		  {
 			Log.info(prefix + "Created listeners/maps.");
 		  }
@@ -47,7 +47,7 @@ public class Main extends Plugin implements Listener
 		  plugin = this;
 		  createFiles();
 		  registerConfig();
-		  if (Check.dev())
+		  if (CheckMain.dev())
 		  {
 			Log.info(prefix + "Loaded config.");
 		  }
@@ -55,14 +55,14 @@ public class Main extends Plugin implements Listener
 		  prefix = cg.getString("prefix").replace("&", "§") + " ";
 		  max_tries = cg.getInt("max-tries");
 		  debugtype = DebugType.OFF;
-		  if (Check.dev())
+		  if (CheckMain.dev())
 		  {
 			Log.info(prefix + "Got variables from the config.");
 		  }
 		  
 		  //Checks
-		  Check.debugType();
-		  if (!Check.auth()) {
+		  CheckMain.debugType();
+		  if (!CheckMain.auth()) {
 			  Log.info(prefix + "§cYou are using a pirated version!");
 			  getProxy().getPluginManager().unregisterListeners(this);
 		      getProxy().getPluginManager().unregisterCommands(this); 
@@ -79,7 +79,7 @@ public class Main extends Plugin implements Listener
 	    if (!file.exists()) {
 	      try
 	      {
-			  if (Check.dev() || Check.normal())
+			  if (CheckMain.dev() || CheckMain.normal())
 			  {
 				  Log.info(prefix + "Config doesn't exist. Creating new one..");
 			  }

@@ -13,6 +13,12 @@ kick-message: '	&cYou have entered the code wrong &4" + tries_player + "&c times
 temp-ban: true
 temp-ban-command: 'tempban <player> 1 hour &cToo many failed authentication attempts. (<tries>)'
 
+#You can decide if you want the plugin to work via a players-list or permission
+#For permission set the following to 'false'
+use-player-list: true
+permission: 'bungeeauth.2fa'
+
+
 #Data
 players:
     - NTaheij

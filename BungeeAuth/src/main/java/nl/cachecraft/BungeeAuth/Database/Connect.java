@@ -1,11 +1,9 @@
 package nl.cachecraft.BungeeAuth.Database;
 
-import com.mysql.jdbc.Connection;
-
 import net.md_5.bungee.api.plugin.Listener;
 
 public class Connect  implements Listener {
-
+/*
 	private Connection connection;
     private String host, database, username, password;
     private int port;
@@ -18,5 +16,5 @@ public class Connect  implements Listener {
     username = "root";
     password = "123";  
     }
-    
+*/
 }

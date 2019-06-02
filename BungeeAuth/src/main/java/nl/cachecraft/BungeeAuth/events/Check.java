@@ -1,15 +1,10 @@
 package nl.cachecraft.BungeeAuth.events;
 
-import java.util.ArrayList;
-import java.util.UUID;
-
 import com.warrenstrange.googleauth.GoogleAuthenticator;
 
 import jline.internal.Log;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.plugin.Listener;
-import net.md_5.bungee.config.Configuration;
-import net.md_5.bungee.api.ProxyServer;
 import nl.cachecraft.BungeeAuth.Main;
 import nl.cachecraft.BungeeAuth.Enums.DebugType;
 

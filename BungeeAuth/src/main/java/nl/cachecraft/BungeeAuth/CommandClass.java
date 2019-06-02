@@ -1,8 +1,4 @@
 package nl.cachecraft.BungeeAuth;
-
-import java.util.ArrayList;
-import java.util.UUID;
-
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.event.ChatEvent;
 import net.md_5.bungee.api.plugin.Listener;
@@ -17,7 +13,6 @@ public class CommandClass implements Listener {
 	  public void onChat(ChatEvent e)
 	  {
 		  ProxiedPlayer p = (ProxiedPlayer)e.getSender();
-		  String msg = e.getMessage();
 		  
 		  if (!Main.authlocked.contains(p.getUniqueId()))
 		  {

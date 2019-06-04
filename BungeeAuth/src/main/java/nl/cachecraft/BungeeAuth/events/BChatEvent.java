@@ -12,7 +12,8 @@ import net.md_5.bungee.event.EventHandler;
 import nl.cachecraft.BungeeAuth.Main;
 import nl.cachecraft.BungeeAuth.events.Check.CheckMain;
 
-public class BChatEvent implements Listener {
+public class BChatEvent implements Listener 
+{
 	
 	  @SuppressWarnings("deprecation")
 	  @EventHandler

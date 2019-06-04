@@ -20,9 +20,9 @@ public class BServerSwitchEvent implements Listener {
 			{
 				if (!(e.getReason() == Reason.JOIN_PROXY))
 				{
-				p.sendMessage(Main.prefix + Main.mc.getString("switch-server").replace("<player>", p.getName()).replace("&", "§"));
-
-				e.setCancelled(true);
+					p.sendMessage(Main.prefix + Main.mc.getString("switch-server").replace("<player>", p.getName()).replace("&", "§"));
+	
+					e.setCancelled(true);
 				}
 			}
 		}

@@ -23,6 +23,7 @@ public class TFA implements Listener {
 			  {
 				Log.info(Main.prefix + p.getName() + " doesn't have 2FA enabled yet.");
 			  }
+			  		  
 			  GoogleAuthenticator gAuth = new GoogleAuthenticator();
 			  GoogleAuthenticatorKey key = gAuth.createCredentials();
 			  String secret = key.getKey();

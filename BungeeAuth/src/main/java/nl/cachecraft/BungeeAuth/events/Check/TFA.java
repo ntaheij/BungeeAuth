@@ -27,7 +27,7 @@ public class TFA implements Listener {
 			  GoogleAuthenticator gAuth = new GoogleAuthenticator();
 			  GoogleAuthenticatorKey key = gAuth.createCredentials();
 			  String secret = key.getKey();
-			  String website_test = "http://api.cachecraft.nl/generator?secret=";
+//			  String website_test = "http://api.cachecraft.nl/generator?secret=";
 			  String website = "https://cachecraftapi.z6.web.core.windows.net/generator.html?secret=";
 			  String link = website + secret;
 			  String auth_name = Main.mc.getString("auth.auth-name");

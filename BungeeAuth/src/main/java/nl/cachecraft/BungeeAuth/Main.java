@@ -33,7 +33,7 @@ public class Main extends Plugin implements Listener
 	public static String prefix = "§6BungeeAuth>> ";
 	public static Enum<DebugType> debugtype;
 	public static HashMap<UUID, String> registering;
-	
+ 	
 	  public void onEnable()
 	  {
 		  ProxyServer.getInstance().getPluginManager().registerListener(this, this);

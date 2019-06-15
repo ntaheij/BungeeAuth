@@ -12,7 +12,7 @@ import nl.cachecraft.BungeeAuth.events.Check.CheckMain;
 import nl.cachecraft.BungeeAuth.events.Check.TFA;
 
 public class LogInOutEvent implements Listener {
-
+ 
 	@SuppressWarnings("deprecation")
 	@EventHandler
 	  public void onPostLogin(PostLoginEvent e) {

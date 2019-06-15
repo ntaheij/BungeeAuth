@@ -13,6 +13,7 @@ import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.plugin.Listener;
 import nl.cachecraft.BungeeAuth.Main;
 import nl.cachecraft.BungeeAuth.events.Check.CheckMain;
+ 
 
 public class LoginMgr implements Listener {
 	

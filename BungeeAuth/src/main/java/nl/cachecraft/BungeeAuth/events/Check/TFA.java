@@ -1,5 +1,5 @@
 package nl.cachecraft.BungeeAuth.events.Check;
-
+ 
 import com.warrenstrange.googleauth.GoogleAuthenticator;
 import com.warrenstrange.googleauth.GoogleAuthenticatorKey;
 

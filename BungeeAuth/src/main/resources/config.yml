@@ -1,5 +1,5 @@
 #Debug types: NORMAL, DEV/DEVELOPER
-debug: 'NORMAL'
+debug: 'DEV'
 
 #This will be shown in the Authenticator app
 use-playername: true
@@ -19,6 +19,15 @@ temp-ban-command: 'tempban <player> 1 hour &cToo many failed authentication atte
 use-player-list: true
 permission: 'bungeeauth.2fa'
 
+playerstorage:
+    #Track the ip-address of every user that logs in that needs to have 2fa enabled
+    track-ips: true
+    #Should the player automatically be logged in when rejoining in a certain time
+    auto-2fa: true
+    #Time (in hours)
+    time: 0.5
+    #Should we use the login, or the logout?
+    use: logout
 
 #Data
 players:

@@ -27,7 +27,7 @@ public class Main extends Plugin implements Listener
 	public static ArrayList<UUID> authlocked;
 	public static HashMap<UUID, Integer> tries;
 	public static int max_tries = 3;
-	public static Configuration cg, ac, mc;
+	public static Configuration cg, ac, mc, ps;
 	public static ConfigurationProvider cp;
 	public static Main plugin;
 	public static String prefix = "§6BungeeAuth>> ";
@@ -133,6 +133,23 @@ public class Main extends Plugin implements Listener
 	        e.printStackTrace();
 	      }
 	    }
+	    File file_playerstorage = new File(getDataFolder(), "playerstorage.yml");
+	    if (!file_playerstorage.exists()) 
+	    {
+	      try
+	      {
+			  if (CheckMain.dev() || CheckMain.normal())
+			  {
+				  Log.info(prefix + "playerstorage.yml doesn't exist. Creating new one..");
+			  }
+	          InputStream in = getResourceAsStream("playerstorage.yml");
+	          Files.copy(in, file_playerstorage.toPath(), new CopyOption[0]);
+	      }
+	      catch (IOException e)
+	      {
+	        e.printStackTrace();
+	      }
+	    }
 	  }
 	
 	public static void registerConfigs()
@@ -142,6 +159,7 @@ public class Main extends Plugin implements Listener
 			cg = cp.load(new File(plugin.getDataFolder(), "config.yml"));
 			ac = cp.load(new File(plugin.getDataFolder(), "authcodes.yml"));
 			mc = cp.load(new File(plugin.getDataFolder(), "messages.yml"));
+			ps = cp.load(new File(plugin.getDataFolder(), "playerstorage.yml"));
 		}
 		catch (IOException e) 
 		{

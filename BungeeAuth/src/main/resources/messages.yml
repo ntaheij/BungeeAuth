@@ -8,3 +8,4 @@ auth:
     valid: '&aAuthentication successful. Welcome &9<player>&a.'
     invalid: '&cIncorrect or expired code. ** A code will only contain numbers **'
     kick-message: '&cYou have entered the wrong code &4<tries>&c times.'
+    autologin: '&aYou are being logged in automatically.'

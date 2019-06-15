@@ -20,7 +20,7 @@ public class BChatEvent implements Listener
 	  public void onChat(ChatEvent e)
 	  {
 		  ProxiedPlayer p = (ProxiedPlayer)e.getSender();
-		  String msg = e.getMessage();
+		  String msg = e.getMessage().replaceAll(" ", "");
 		  if (Main.registering.containsKey(p.getUniqueId()))
 		  {
 				  try
@@ -71,13 +71,6 @@ public class BChatEvent implements Listener
 					  }
 					  else
 					  {
-//						  int tries_t = Main.tries.get(p.getUniqueId());
-//						  Main.tries.remove(p.getUniqueId());
-//						  Main.tries.put(p.getUniqueId(), tries_t + 1);
-//						  if (CheckMain.dev() || CheckMain.normal())
-//						  {
-//							  Log.info(Main.prefix + "[" + p.getName() + "]" + " Code is invalid.");
-//						  }
 						  p.sendMessage(Main.prefix + Main.mc.getString("auth.invalid").replace("<player>", p.getName()).replace("&", "§"));
 						  e.setCancelled(true);
 					  }
@@ -88,9 +81,6 @@ public class BChatEvent implements Listener
 					  {
 						  Log.info(Main.prefix + "[" + p.getName() + "]" + " Code is invalid.");
 					  }
-//					  int tries_t = Main.tries.get(p.getUniqueId());
-//					  Main.tries.remove(p.getUniqueId());
-//					  Main.tries.put(p.getUniqueId(), tries_t + 1);
 					  p.sendMessage(Main.prefix + Main.mc.getString("auth.invalid").replace("<player>", p.getName()).replace("&", "§"));
 					  e.setCancelled(true);
 				  }

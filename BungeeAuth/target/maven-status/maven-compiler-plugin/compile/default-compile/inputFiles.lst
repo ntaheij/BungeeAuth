@@ -1,8 +1,9 @@
 C:\Users\noah\git\BungeeAuth\BungeeAuth\src\main\java\nl\cachecraft\BungeeAuth\Enums\PluginStatus.java
+C:\Users\noah\git\BungeeAuth\BungeeAuth\src\main\java\nl\cachecraft\BungeeAuth\Connections\VerCheck.java
 C:\Users\noah\git\BungeeAuth\BungeeAuth\src\main\java\nl\cachecraft\BungeeAuth\events\LogInOutEvent.java
 C:\Users\noah\git\BungeeAuth\BungeeAuth\src\main\java\nl\cachecraft\BungeeAuth\events\BServerSwitchEvent.java
 C:\Users\noah\git\BungeeAuth\BungeeAuth\src\main\java\nl\cachecraft\BungeeAuth\Main.java
-C:\Users\noah\git\BungeeAuth\BungeeAuth\src\main\java\nl\cachecraft\BungeeAuth\Database\Connect.java
+C:\Users\noah\git\BungeeAuth\BungeeAuth\src\main\java\nl\cachecraft\BungeeAuth\Connections\Connect.java
 C:\Users\noah\git\BungeeAuth\BungeeAuth\src\main\java\nl\cachecraft\BungeeAuth\events\Check\CheckMain.java
 C:\Users\noah\git\BungeeAuth\BungeeAuth\src\main\java\nl\cachecraft\BungeeAuth\events\BChatEvent.java
 C:\Users\noah\git\BungeeAuth\BungeeAuth\src\main\java\nl\cachecraft\BungeeAuth\CommandClass.java

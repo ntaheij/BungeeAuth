@@ -1,4 +1,4 @@
-package nl.cachecraft.BungeeAuth.Database;
+package nl.cachecraft.BungeeAuth.Connections;
 
 import net.md_5.bungee.api.plugin.Listener;
 

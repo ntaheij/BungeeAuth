@@ -35,6 +35,11 @@ public class LogInOutEvent implements Listener {
 				  Log.info(Main.prefix + "Using list to see if player needs 2fa.");
 				  TFA.auth(p);
 				  LoginMgr.lastLogin(p);
+				  if(!Main.uptodate)
+				  {
+					  p.sendMessage(Main.prefix + "§cVersion §4" + Main.ver + "§c is not up-to-date!" + "\n" +
+							  		Main.prefix + "§cPlease download the newest version (§4" + Main.latestver + "§c) ASAP.");
+				  }
 			  }
 		  }
 		  else {
@@ -43,6 +48,11 @@ public class LogInOutEvent implements Listener {
 				  Log.info(Main.prefix + "Using permissions to see if player needs 2fa.");
 				  TFA.auth(p);
 				  LoginMgr.lastLogin(p);
+				  if(!Main.uptodate)
+				  {
+					  p.sendMessage(Main.prefix + "§cVersion §4" + Main.ver + "§c is not up-to-date!" + "\n" +
+							  		Main.prefix + "§cPlease download the newest version (§4" + Main.latestver + "§c) ASAP.");
+				  }
 			  }
 		  }
 	  }

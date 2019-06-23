@@ -16,10 +16,11 @@ import net.md_5.bungee.api.plugin.Plugin;
 import net.md_5.bungee.config.Configuration;
 import net.md_5.bungee.config.ConfigurationProvider;
 import net.md_5.bungee.config.YamlConfiguration;
+import nl.cachecraft.BungeeAuth.Connections.VerCheck;
 import nl.cachecraft.BungeeAuth.Enums.DebugType;
 import nl.cachecraft.BungeeAuth.events.BChatEvent;
-import nl.cachecraft.BungeeAuth.events.LogInOutEvent;
 import nl.cachecraft.BungeeAuth.events.BServerSwitchEvent;
+import nl.cachecraft.BungeeAuth.events.LogInOutEvent;
 import nl.cachecraft.BungeeAuth.events.Check.CheckMain;
 
 public class Main extends Plugin implements Listener
@@ -30,9 +31,12 @@ public class Main extends Plugin implements Listener
 	public static Configuration cg, ac, mc, ps;
 	public static ConfigurationProvider cp;
 	public static Main plugin;
-	public static String prefix = "§6BungeeAuth>> ";
+	public static String prefix = "§6BungeeAuth>> §9";
 	public static Enum<DebugType> debugtype;
 	public static HashMap<UUID, String> registering;
+	public static String ver;
+	public static boolean uptodate;
+	public static String latestver;
  	
 	  public void onEnable()
 	  {
@@ -59,8 +63,15 @@ public class Main extends Plugin implements Listener
 		  }
 		  
 		  prefix = mc.getString("prefix").replace("&", "§") + " ";
+		  //No double spaces at the end
+		  if(prefix.substring(prefix.length() - 2).equalsIgnoreCase("  "))
+		  {
+			  prefix = mc.getString("prefix").replace("&", "§");
+		  }
 		  max_tries = cg.getInt("max-tries");
+		  ver = cg.getString("version");
 		  debugtype = DebugType.OFF;
+		  checkVersion();
 		  if (CheckMain.dev())
 		  {
 			Log.info(prefix + "Got variables from the config.");
@@ -164,6 +175,22 @@ public class Main extends Plugin implements Listener
 		catch (IOException e) 
 		{
 			e.printStackTrace();
+		}
+	}
+	
+	public void checkVersion()
+	{
+		String s = VerCheck.verCheck("https://cachecraft.nl/plugins/bungeeauth/version.txt");
+		latestver = s;
+		if(ver.equalsIgnoreCase(s))
+		{
+			Log.info(prefix + "Version " + ver + " is up-to-date!");
+			uptodate = true;
+		}
+		else 
+		{
+			Log.info(prefix + "Version " + ver + " is not up-to-date! Newest version: " + s);
+			uptodate = false;
 		}
 	}
 }

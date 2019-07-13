@@ -120,6 +120,18 @@ public class CommandClass extends Command implements Listener {
 				  				
 			  				  }
 			  			  }
+			  			  else if (args[0].equalsIgnoreCase("version"))
+			  			  {
+			  				if(!Main.uptodate)
+							{
+								  p.sendMessage(Main.prefix + "§cVersion §4" + Main.ver + "§c is not up-to-date!" + "\n" +
+										  		Main.prefix + "§cPlease download the newest version (§4" + Main.latestver + "§c) ASAP.");
+							}
+			  				else
+			  				{
+			  					p.sendMessage(Main.prefix + "§aVersion §2" + Main.ver + "§a is up-to-date!");
+			  				}
+			  			  }
 			  			  else
 			  			  {
 			  				  p.sendMessage("§6BungeeAuth §bv" + Main.ver + " §9by §bCacheCraft§9.");

@@ -122,12 +122,12 @@ public class CommandClass extends Command implements Listener {
 			  			  }
 			  			  else
 			  			  {
-			  				  p.sendMessage("§6BungeeAuth §9by §bCacheCraft §9(§bv" + Main.ver + "§9)");
+			  				  p.sendMessage("§6BungeeAuth §bv" + Main.ver + " §9by §bCacheCraft§9.");
 			  			  }
 	        		}
 	        		else
 	        		{
-	        			p.sendMessage("§6BungeeAuth §9by §bCacheCraft §9(§bv" + Main.ver + "§9)");
+	        			p.sendMessage("§6BungeeAuth §bv" + Main.ver + " §9by §bCacheCraft§9.");
 	        		}
 				  }
 			}

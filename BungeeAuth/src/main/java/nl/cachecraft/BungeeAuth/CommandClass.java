@@ -6,13 +6,12 @@ import java.util.List;
 
 import jline.internal.Log;
 import net.md_5.bungee.api.CommandSender;
-import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.plugin.Command;
 import net.md_5.bungee.api.plugin.Listener;
 
 public class CommandClass extends Command implements Listener {
-
+//
 		public CommandClass()
 		{
 			super("bungeeauth",null,new String[] {"bauth", "2fa", "tfa", "b2fa", "btfa"});

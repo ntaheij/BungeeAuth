@@ -9,7 +9,7 @@ import nl.cachecraft.BungeeAuth.Main;
 import nl.cachecraft.BungeeAuth.Enums.DebugType;
  
 public class CheckMain implements Listener {
-	
+//	
 	public static boolean playerInputCode(ProxiedPlayer p, int code)
 	{
 		String secretkey = Main.ac.getString("authcodes." + p.getUniqueId());

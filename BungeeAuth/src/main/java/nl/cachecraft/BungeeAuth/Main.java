@@ -34,7 +34,7 @@ public class Main extends Plugin implements Listener
 	public static String prefix = "§6BungeeAuth>> §9";
 	public static Enum<DebugType> debugtype;
 	public static HashMap<UUID, String> registering;
-	public static String ver;
+	public static String ver = "§cnone";
 	public static boolean uptodate;
 	public static String latestver;
  	
@@ -171,6 +171,7 @@ public class Main extends Plugin implements Listener
 	
 	public void checkVersion()
 	{
+		//Vercheck working
 		String s = VerCheck.verCheck("https://cachecraft.nl/plugins/bungeeauth/version.txt");
 		latestver = s;
 		if(ver.equalsIgnoreCase(s))

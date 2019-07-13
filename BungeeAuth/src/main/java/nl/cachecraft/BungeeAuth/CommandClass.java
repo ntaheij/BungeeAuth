@@ -64,11 +64,7 @@ public class CommandClass extends Command implements Listener {
 			  			  }
 			  			  else if (args[0].equalsIgnoreCase("add"))
 			  			  {		
-			  				  if (!p.hasPermission("bungeeauth.add") || p.hasPermission("bungeeauth.*"))
-			  				  {
-			  					p.sendMessage(Main.prefix + "§cYou don't have permission for that!");  
-			  				  }
-			  				  else
+			  				  if (p.hasPermission("bungeeauth.add") || p.hasPermission("bungeeauth.*"))
 			  				  {
 				  				  if (args.length < 2)
 				  				  {
@@ -107,16 +103,16 @@ public class CommandClass extends Command implements Listener {
 					  				}
 				  				  }
 			  				  }
-			  			  }
-			  			  else if (args[0].equalsIgnoreCase("remove"))
-			  			  {
-			  				  if (!p.hasPermission("bungeeauth.remove") || p.hasPermission("bungeeauth.*"))
+			  				  else
 			  				  {
 			  					p.sendMessage(Main.prefix + "§cYou don't have permission for that!");  
 			  				  }
-			  				  else
+			  			  }
+			  			  else if (args[0].equalsIgnoreCase("remove"))
+			  			  {
+			  				  if (p.hasPermission("bungeeauth.remove") || p.hasPermission("bungeeauth.*"))
 			  				  {
-				  				  if (args.length < 2)
+			  					if (args.length < 2)
 				  				  {
 				  					 p.sendMessage(Main.prefix + "§cPlease supply a player.");
 				  				  }
@@ -153,7 +149,11 @@ public class CommandClass extends Command implements Listener {
 					  				}
 					  				
 				  				  }
-			  			  	}
+			  				  }
+			  				  else
+			  				  {
+				  				p.sendMessage(Main.prefix + "§cYou don't have permission for that!");  
+				  			  }
 			  			  }
 			  			  else if (args[0].equalsIgnoreCase("version"))
 			  			  {

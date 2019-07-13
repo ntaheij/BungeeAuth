@@ -18,6 +18,7 @@ public class CheckMain implements Listener {
 			secretkey = Main.registering.get(p.getUniqueId());
 		}
 		GoogleAuthenticator gAuth = new GoogleAuthenticator();
+		gAuth.getTotpPassword(secretkey);
 		boolean codeisvalid = gAuth.authorize(secretkey, code);
 		if (CheckMain.dev())
 		{

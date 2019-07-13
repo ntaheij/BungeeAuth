@@ -41,10 +41,10 @@ public class Main extends Plugin implements Listener
 	  public void onEnable()
 	  {
 		  ProxyServer.getInstance().getPluginManager().registerListener(this, this);
-		  ProxyServer.getInstance().getPluginManager().registerListener(this, new CommandClass());
 		  ProxyServer.getInstance().getPluginManager().registerListener(this, new LogInOutEvent());
 		  ProxyServer.getInstance().getPluginManager().registerListener(this, new BChatEvent());
 		  ProxyServer.getInstance().getPluginManager().registerListener(this, new BServerSwitchEvent());
+		  ProxyServer.getInstance().getPluginManager().registerCommand(this, new CommandClass());
 		  authlocked = new ArrayList<UUID>();
 		  tries = new HashMap<UUID, Integer>();
 		  registering = new HashMap<UUID, String>();
@@ -59,18 +59,9 @@ public class Main extends Plugin implements Listener
 		  registerConfigs();
 		  if (CheckMain.dev())
 		  {
-			Log.info(prefix + "Loaded config.");
-		  }
-		  
-		  prefix = mc.getString("prefix").replace("&", "§") + " ";
-		  //No double spaces at the end
-		  if(prefix.substring(prefix.length() - 2).equalsIgnoreCase("  "))
-		  {
-			  prefix = mc.getString("prefix").replace("&", "§");
-		  }
-		  max_tries = cg.getInt("max-tries");
-		  ver = cg.getString("version");
-		  debugtype = DebugType.OFF;
+			Log.info(prefix + "Loaded configs.");
+		  }		  
+		  setVars();  
 		  checkVersion();
 		  if (CheckMain.dev())
 		  {
@@ -192,5 +183,24 @@ public class Main extends Plugin implements Listener
 			Log.info(prefix + "Version " + ver + " is not up-to-date! Newest version: " + s);
 			uptodate = false;
 		}
+	}
+	
+	public static void setVars()
+	{
+		  prefix = mc.getString("prefix").replace("&", "§") + " ";
+		  //No double spaces at the end
+		  if(prefix.substring(prefix.length() - 2).equalsIgnoreCase("  "))
+		  {
+			  prefix = mc.getString("prefix").replace("&", "§");
+		  }
+		  max_tries = cg.getInt("max-tries");
+		  ver = cg.getString("version");
+		  debugtype = DebugType.OFF;
+	}
+	
+	public static String getPlayerFromString(String s)
+	{
+		String r = ProxyServer.getInstance().getPlayer(s).getName();
+		return r;
 	}
 }

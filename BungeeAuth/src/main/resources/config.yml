@@ -1,7 +1,7 @@
 #Debug types: NORMAL, DEV/DEVELOPER
 debug: 'DEV'
 
-#This will be shown in the Authenticator app
+#This will be shown in the Authenticator App
 use-playername: true
 
 #Set the max tries that a player can use before getting kicked.
@@ -26,7 +26,7 @@ playerstorage:
     auto-2fa: true
     #Time (in hours)
     time: 0.5
-    #Should we use the login, or the logout?
+    #Should we use the login, or the logout to measure the time for relogging in a certain time?
     use: logout
 
 #Data

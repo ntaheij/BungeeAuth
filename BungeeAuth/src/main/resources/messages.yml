@@ -1,7 +1,7 @@
 prefix: '&6BungeeAuth>>&9'
 no-perms: '&cYou do not have permission to use this command.'
 
-switch-server: '&cYou can not switch servers whilst authenticating!'
+switch-server: '&cYou cannot switch servers whilst authenticating!'
 auth:
     auth-name: 'BungeeAuth'
     open-message: '&cPlease open your Google Authenticator App and enter your six digit auth code.'

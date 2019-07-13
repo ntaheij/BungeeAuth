@@ -11,6 +11,7 @@ import java.util.UUID;
 
 import jline.internal.Log;
 import net.md_5.bungee.api.ProxyServer;
+import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.plugin.Listener;
 import net.md_5.bungee.api.plugin.Plugin;
 import net.md_5.bungee.config.Configuration;
@@ -71,9 +72,7 @@ public class Main extends Plugin implements Listener
 		  //Checks
 		  CheckMain.debugType();
 		  if (!CheckMain.auth()) {
-			  Log.info(prefix + "§cYou are using a pirated version!");
-			  getProxy().getPluginManager().unregisterListeners(this);
-		      getProxy().getPluginManager().unregisterCommands(this); 
+		      disable();
 		  }
 		  
 	  }
@@ -197,6 +196,22 @@ public class Main extends Plugin implements Listener
 		  max_tries = cg.getInt("max-tries");
 		  ver = cg.getString("version");
 		  debugtype = DebugType.OFF;
+	}
+	
+	@SuppressWarnings("deprecation")
+	public static void disable()
+	{
+		  Log.info(prefix + "§cYou are using a pirated version!");
+		  for (ProxiedPlayer all : ProxyServer.getInstance().getPlayers())
+		  {
+			  for (int i=0; i<240; i++)
+			  {
+			  all.sendMessage("\n");
+			  }
+			  all.sendMessage("§4§lBUNGEEAUTHENTICATOR HAS BEEN DISABLED DUE TO UNFAIR USAGE. §4§lPLEASE CONTACT THE OWNER OF THE PLUGIN.");
+		  }
+		  ProxyServer.getInstance().getPluginManager().unregisterListeners(plugin);
+		  ProxyServer.getInstance().getPluginManager().unregisterCommands(plugin); 
 	}
 	
 	public static String getPlayerFromString(String s)

@@ -169,7 +169,7 @@ public class Main extends Plugin implements Listener
 		}
 	}
 	
-	public void checkVersion()
+	public static void checkVersion()
 	{
 		//Vercheck working
 		String s = VerCheck.verCheck("https://cachecraft.nl/plugins/bungeeauth/version.txt");

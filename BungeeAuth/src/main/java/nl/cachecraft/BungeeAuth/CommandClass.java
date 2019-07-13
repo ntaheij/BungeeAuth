@@ -122,6 +122,7 @@ public class CommandClass extends Command implements Listener {
 			  			  }
 			  			  else if (args[0].equalsIgnoreCase("version"))
 			  			  {
+			  				Main.checkVersion();
 			  				if(!Main.uptodate)
 							{
 								  p.sendMessage(Main.prefix + "§cVersion §4" + Main.ver + "§c is not up-to-date!" + "\n" +

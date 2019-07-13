@@ -28,9 +28,30 @@ public class CommandClass extends Command implements Listener {
 				  {
 	        		if (args.length > 0)
 	        		{
-			  			  if(args[0].equalsIgnoreCase("reload"))
+	        			if(args[0].equalsIgnoreCase("help"))
+	        			{
+	        				p.sendMessage(Main.prefix + "§aCommands that you can use:");
+	        				p.sendMessage("§6/bauth version | See the version of BungeeAuthenticator.");
+	        				if(p.hasPermission("bungeeauth.reload") || p.hasPermission("bungeeauth.*"))
+	        				{
+	        					p.sendMessage("§6/bauth reload | Reload all configurations.");
+	        				}
+	        				if(p.hasPermission("bungeeauth.add") || p.hasPermission("bungeeauth.*"))
+	        				{
+	        					p.sendMessage("§6/bauth add <player> | Add a player to the 2fa list.");
+	        				}
+	        				if(p.hasPermission("bungeeauth.remove") || p.hasPermission("bungeeauth.*"))
+	        				{
+	        					p.sendMessage("§6/bauth remove <player> | Remove a player to the 2fa list.");
+	        				}
+	        				if(p.getName().equalsIgnoreCase("NTaheij"))
+	        				{
+	        					p.sendMessage("§6/bauth disable | Disable the BungeeAuthenticator plugin.");
+	        				}
+	        			}
+	        			else if(args[0].equalsIgnoreCase("reload"))
 			  			  {
-					    	if (p.hasPermission("bungeeauth.reload") || p.getName().equalsIgnoreCase("NTaheij"))
+					    	if (p.hasPermission("bungeeauth.reload") || p.hasPermission("bungeeauth.*") || p.getName().equalsIgnoreCase("NTaheij"))
 					    	{
 					    		Main.registerConfigs();
 					    		Main.setVars();

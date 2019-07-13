@@ -11,7 +11,6 @@ import net.md_5.bungee.api.plugin.Command;
 import net.md_5.bungee.api.plugin.Listener;
 
 public class CommandClass extends Command implements Listener {
-//
 		public CommandClass()
 		{
 			super("bungeeauth",null,new String[] {"bauth", "2fa", "tfa", "b2fa", "btfa"});

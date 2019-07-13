@@ -34,7 +34,7 @@ public class Main extends Plugin implements Listener
 	public static String prefix = "§6BungeeAuth>> §9";
 	public static Enum<DebugType> debugtype;
 	public static HashMap<UUID, String> registering;
-	public static String ver = "§cnone";
+	public static String ver = "§4none";
 	public static boolean uptodate;
 	public static String latestver;
  	

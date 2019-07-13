@@ -19,7 +19,6 @@ public class LogInOutEvent implements Listener {
 		  ProxiedPlayer p = e.getPlayer();
 		  if (CheckMain.dev())
 		  {
-			//
 			Log.info(Main.prefix + p.getName() + " has connected.");
 		  }
 		  

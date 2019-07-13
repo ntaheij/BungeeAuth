@@ -1,5 +1,5 @@
 #Debug types: NORMAL, DEV/DEVELOPER
-debug: 'DEV'
+debug: 'NORMAL'
 
 #This will be shown in the Authenticator App
 use-playername: true

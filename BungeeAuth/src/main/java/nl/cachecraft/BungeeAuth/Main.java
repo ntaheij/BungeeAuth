@@ -171,7 +171,9 @@ public class Main extends Plugin implements Listener
 	public static void checkVersion()
 	{
 		//Vercheck working
-		String s = VerCheck.verCheck("https://cachecraft.nl/plugins/bungeeauth/version.txt");
+		//Own: https://cachecraft.nl/plugins/bungeeauth/version.txt
+		//Spigot: https://api.spigotmc.org/legacy/update.php?resource=69295
+		String s = VerCheck.verCheck("https://api.spigotmc.org/legacy/update.php?resource=69295");
 		latestver = s;
 		if(ver.equalsIgnoreCase(s))
 		{

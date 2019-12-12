@@ -19,6 +19,8 @@ import net.md_5.bungee.config.ConfigurationProvider;
 import net.md_5.bungee.config.YamlConfiguration;
 import nl.cachecraft.BungeeAuth.Connections.VerCheck;
 import nl.cachecraft.BungeeAuth.Enums.DebugType;
+import nl.cachecraft.BungeeAuth.Util.License;
+import nl.cachecraft.BungeeAuth.Util.License.ValidationType;
 import nl.cachecraft.BungeeAuth.events.BChatEvent;
 import nl.cachecraft.BungeeAuth.events.BServerSwitchEvent;
 import nl.cachecraft.BungeeAuth.events.LogInOutEvent;
@@ -38,9 +40,11 @@ public class Main extends Plugin implements Listener
 	public static String ver = "§4none";
 	public static boolean uptodate;
 	public static String latestver;
- 	
+	
 	  public void onEnable()
 	  {
+
+		  
 		  ProxyServer.getInstance().getPluginManager().registerListener(this, this);
 		  ProxyServer.getInstance().getPluginManager().registerListener(this, new LogInOutEvent());
 		  ProxyServer.getInstance().getPluginManager().registerListener(this, new BChatEvent());
@@ -58,6 +62,9 @@ public class Main extends Plugin implements Listener
 		  cp = ConfigurationProvider.getProvider(YamlConfiguration.class);
 		  createFiles();
 		  registerConfigs();
+		  
+		  validate();
+		  
 		  if (CheckMain.dev())
 		  {
 			Log.info(prefix + "Loaded configs.");
@@ -200,6 +207,48 @@ public class Main extends Plugin implements Listener
 		  debugtype = DebugType.OFF;
 	}
 	
+	
+	private void validate()
+	{
+		String license = cg.getString("license"); //IVAN-WVTX-94OF-M9HK
+		
+		System.out.println("[!] CacheCraft Licensing System");
+		System.out.println("[!] Checking key: " + license);
+		System.out.println("[!] For plugin: " + plugin.getDescription().getName());
+
+		ValidationType vt = new License(license, plugin).isValid();
+
+		if(vt == ValidationType.VALID)
+		{
+			System.out.println("[!] License is valid!");
+		}
+		else
+		{
+			
+			System.out.println("[!] License is invalid!");
+			if(vt == ValidationType.INVALID_PLUGIN)
+			{
+				System.out.println("[!] Reason: This license is not for this plugin!");
+			}
+			if(vt == ValidationType.KEY_NOT_FOUND)
+			{
+				System.out.println("[!] Reason: This license does not exist or has expired!");
+			}
+			if(vt == ValidationType.KEY_OUTDATED)
+			{
+				System.out.println("[!] Reason: The key has expired, please request a new one!");
+			}
+			if(vt == ValidationType.NOT_VALID_IP)
+			{
+				System.out.println("[!] Reason: The maximum IPs on this key has been reached!");
+			}
+			System.out.println("[!] If you think something is wrong, please contact me with code: " + vt.toString());
+			
+			disable();
+		}
+
+	}
+	
 	@SuppressWarnings("deprecation")
 	public static void disable()
 	{
@@ -213,7 +262,7 @@ public class Main extends Plugin implements Listener
 			  all.sendMessage("§4§lBUNGEEAUTHENTICATOR HAS BEEN DISABLED DUE TO UNFAIR USAGE. §4§lPLEASE CONTACT THE OWNER OF THE PLUGIN.");
 		  }
 		  ProxyServer.getInstance().getPluginManager().unregisterListeners(plugin);
-		  ProxyServer.getInstance().getPluginManager().unregisterCommands(plugin); 
+		  ProxyServer.getInstance().getPluginManager().unregisterCommands(plugin);
 	}
 	
 	public static String getPlayerFromString(String s)
@@ -221,4 +270,5 @@ public class Main extends Plugin implements Listener
 		String r = ProxyServer.getInstance().getPlayer(s).getName();
 		return r;
 	}
+	
 }

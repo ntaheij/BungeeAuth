@@ -33,3 +33,4 @@ playerstorage:
 players:
     - NTaheij
 version: '1.0'
+license: 'LICE-NSIN-GKEY-HERE'

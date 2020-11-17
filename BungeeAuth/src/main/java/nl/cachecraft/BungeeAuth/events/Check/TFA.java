@@ -25,6 +25,9 @@ public class TFA implements Listener {
 			  }
 			  		  
 			  GoogleAuthenticator gAuth = new GoogleAuthenticator();
+
+			  if(gAuth != null) { return; }
+
 			  GoogleAuthenticatorKey key = gAuth.createCredentials();
 			  String secret = key.getKey();
 //			  String website_test = "http://api.cachecraft.nl/generator?secret=";
@@ -55,11 +58,11 @@ public class TFA implements Listener {
 				Log.info(Main.prefix + "- Using Playername: [" + Main.cg.getBoolean("use-playername") + "]");
 			  }
 			  
-			  p.sendMessage(Main.prefix + "§7You are required to register using 2FA via the Google Authenticator App.");
-			  p.sendMessage("§7Your §aGoogleAuth Code §7is §a" + secret);
-			  p.sendMessage("§7Alternatively, you can use the QR-code below.");
-			  p.sendMessage("§a" + link);
-			  p.sendMessage("§cAfter doing so type the six digit verification code.");
+			  p.sendMessage(Main.prefix + "ï¿½7You are required to register using 2FA via the Google Authenticator App.");
+			  p.sendMessage("ï¿½7Your ï¿½aGoogleAuth Code ï¿½7is ï¿½a" + secret);
+			  p.sendMessage("ï¿½7Alternatively, you can use the QR-code below.");
+			  p.sendMessage("ï¿½a" + link);
+			  p.sendMessage("ï¿½cAfter doing so type the six digit verification code.");
 			  Main.registering.put(p.getUniqueId(), secret);
 		  }
 		  else
@@ -70,7 +73,7 @@ public class TFA implements Listener {
 				Log.info(Main.prefix + p.getName() + " is being locked for 2FA.");
 			  }
 			  Main.authlocked.add(p.getUniqueId());
-			  p.sendMessage(Main.prefix + Main.mc.getString("auth.open-message").replace("<player>", p.getName()).replace("&", "§"));
+			  p.sendMessage(Main.prefix + Main.mc.getString("auth.open-message").replace("<player>", p.getName()).replace("&", "ï¿½"));
 			 
 		  }
 	  }
